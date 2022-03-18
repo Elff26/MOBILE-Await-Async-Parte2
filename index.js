@@ -62,9 +62,49 @@
 //Sem fazer manualmente
 //Função assincrona opera devolvendo uma promise 
 //Função async respeita o metodo aberto-fechado 
-async function hello (nome){
-    return `Hello, ${nome}`
+// async function hello (nome){
+//     return `Hello, ${nome}`
+// }
+
+// const resultado = hello("Ana")
+// resultado.then(res => console.log(res))
+
+function fatorial(n){
+    if(n < 0) return Promise.reject("Valor não pode ser negativo") //outra maneira de identar
+    
+    let = res = 1
+    for(let i = 2; i<= n; i++){
+        res *= i
+    }
+
+    return Promise.resolve(res)
 }
 
-const resultado = hello("Ana")
-resultado.then(res => console.log(res))
+//se assemelha com o processamento bloqueante
+// function chamadaComThenCatch(){
+//     fatorial(10)
+//     .then(res => console.log(res))
+//     .catch(erro => console.log(erro))
+
+//     fatorial(-10)
+//     .then(res => console.log(res))
+//     .catch(erro => console.log(erro))
+// }
+
+// chamadaComThenCatch()
+
+//Agendar execução
+async function chamadaComAsynAwait(){
+    try{
+        const fat = await fatorial(10)
+        console.log(fat)
+    
+        const fatError = await fatorial(-10)
+        console.log(fatError)
+    }
+    catch(exception){
+        console.log(exception)
+    }
+}
+
+chamadaComAsynAwait()
